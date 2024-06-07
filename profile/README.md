@@ -1,7 +1,7 @@
 <p align="center">
   <picture width="200">
-    <source media="(prefers-color-scheme: dark)" width="172" srcset="./docs/imgs/composio_black_font.svg">
-    <img alt="Composio" width="172" src="./docs/imgs/composio_white_font.svg"/>
+    <source media="(prefers-color-scheme: dark)" width="172" srcset="composio_black_font.svg">
+    <img alt="Composio" width="172" src="composio_white_font.svg"/>
   </picture>
 </p>
 <p align="center">
