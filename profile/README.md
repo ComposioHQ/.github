@@ -78,7 +78,7 @@
 We believe AI Based Agents/Workflows are the future.
 Composio is the best toolset to integrate AI Agents to best Agentic Tools and use them to accomplish tasks.
 
-<img alt="Illustration" src="./docs/imgs/banner.png" style="border-radius: 5px"/>
+<img alt="Illustration" src="image.png" style="border-radius: 5px"/>
 
 ## 🚀 Getting Started
 
