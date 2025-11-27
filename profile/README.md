@@ -8,12 +8,16 @@
 
 Skills that evolve for your Agents
 
-[🌐 Website](https://composio.dev) • [📚 Documentation](https://docs.composio.dev)
+### Quick Links
+
+[![Get Started](https://img.shields.io/badge/GET%20STARTED-F5E6D3?style=for-the-badge&logo=rocket&logoColor=000000)](https://platform.composio.dev)
+[![Documentation](https://img.shields.io/badge/DOCUMENTATION-000000?style=for-the-badge&logo=book&logoColor=white)](https://docs.composio.dev)
+[![Join Discord](https://img.shields.io/badge/JOIN%20DISCORD-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/composio)
 
 [![GitHub Stars](https://img.shields.io/github/stars/ComposioHQ/composio?style=social)](https://github.com/ComposioHQ/composio/stargazers)
 [![PyPI Downloads](https://img.shields.io/pypi/dm/composio?label=PyPI%20Downloads)](https://pypi.org/project/composio/)
 [![NPM Downloads](https://img.shields.io/npm/dt/@composio/core?label=NPM%20Downloads)](https://www.npmjs.com/package/@composio/core)
-[![Discord](https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white)](https://discord.gg/composio)
+
 </div>
 
 This repository contains the official Software Development Kits (SDKs) for Composio, providing seamless integration capabilities for Python and Typescript Agentic Frameowrks and Libraries.
@@ -254,3 +258,21 @@ If you encounter any issues or have questions about the SDKs:
 - Open an issue in this repository
 - Contact our [support team](mailto:support@composio.dev)
 - Check our [documentation](https://docs.composio.dev/)
+
+---
+
+<div align="center">
+
+**Ready to build something amazing?**
+
+[Get your API key](https://platform.composio.dev) and start building AI agents in minutes
+
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/composiohq)
+[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=x&logoColor=white)](https://x.com/composio)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/composiohq/)
+[![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/composio)
+
+• [Star our main repo](https://github.com/composiohq/composio) • [Try the platform](https://platform.composio.dev) • [Read the docs](https://docs.composio.dev) •
+
+
+</div>
