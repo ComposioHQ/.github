@@ -8,8 +8,6 @@
 
 Skills that evolve for your Agents
 
-### Quick Links
-
 [![Get Started](https://img.shields.io/badge/GET%20STARTED-F5E6D3?style=for-the-badge&logo=rocket&logoColor=000000)](https://platform.composio.dev)
 [![Documentation](https://img.shields.io/badge/DOCUMENTATION-000000?style=for-the-badge&logo=book&logoColor=white)](https://docs.composio.dev)
 [![Join Discord](https://img.shields.io/badge/JOIN%20DISCORD-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/composio)
