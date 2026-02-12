@@ -1,0 +1,10 @@
+title = "Organization Gitleaks Configuration"
+#The strings with ac_ are auth config IDs, and strings with ca_ are connected_account IDs of composio.
+[allowlist]
+  description = "Composio-approved non-secret patterns"
+  regexTarget = "match"
+  regexes = [
+    '''ac_[a-zA-Z0-9_\-]+''',
+    '''ca_[a-zA-Z0-9_\-]+''',
+    '''REDACTED''',
+  ]
