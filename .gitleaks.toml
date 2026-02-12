@@ -1,0 +1,10 @@
+title = "Organization Gitleaks Configuration"
+
+[allowlist]
+  description = "Company-approved non-secret patterns"
+  regexTarget = "match"
+  regexes = [
+    '''ac_[a-zA-Z0-9_\-]+''',
+    '''ca_[a-zA-Z0-9_\-]+''',
+    '''\.\.\.''',
+  ]
