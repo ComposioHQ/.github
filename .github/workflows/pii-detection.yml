@@ -1,0 +1,111 @@
+name: Reusable PII and Sensitive Data Logging Detection
+
+on:
+  workflow_call:
+    secrets:
+      SEMGREP_APP_TOKEN:
+        required: false
+        description: "Semgrep App token for enhanced rules and dashboard (optional)"
+      SLACK_TECH_WEBHOOK:
+        required: false
+        description: "Slack webhook URL for security notifications"
+    inputs:
+      slack_channel:
+        description: "Slack channel to send notifications to"
+        required: false
+        type: string
+        default: "buzz-security"
+      semgrep_rules:
+        description: "Semgrep rules to use (space-separated)"
+        required: false
+        type: string
+        default: "p/secrets p/security-audit p/owasp-top-ten"
+
+permissions:
+  contents: read
+  pull-requests: write
+  security-events: write
+
+jobs:
+  pii-detection:
+    name: Detect PII and Sensitive Data Logging
+    runs-on: ubuntu-latest
+    container:
+      image: semgrep/semgrep
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Semgrep scan
+        id: semgrep
+        run: |
+          semgrep scan \
+            --config ${{ inputs.semgrep_rules }} \
+            --sarif \
+            --output=semgrep-results.sarif \
+            --error \
+            --verbose
+        env:
+          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+        continue-on-error: true
+
+      - name: Upload SARIF to GitHub Security
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: semgrep-results.sarif
+        continue-on-error: true
+
+      - name: Comment on PR if issues found
+        if: failure() && steps.semgrep.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const comment = `## :shield: Security Scan Alert
+
+            **Semgrep detected potential security issues including PII/sensitive data handling.**
+
+            ### What to check
+            - Sensitive data being logged (passwords, tokens, PII)
+            - Hardcoded secrets or credentials
+            - Security misconfigurations
+
+            ### View Results
+            - Check the **Security** tab in this repository for detailed findings
+            - Review the workflow logs for specifics
+
+            ### Resources
+            - [Semgrep Rules Registry](https://semgrep.dev/r)
+            - [OWASP Logging Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html)
+
+            cc: @${{ github.actor }}`;
+
+            const prNumber = context.payload.pull_request?.number;
+            if (prNumber) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: comment
+              });
+            }
+
+      - name: Slack Notification
+        if: failure() && steps.semgrep.outcome == 'failure'
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_TECH_WEBHOOK }}
+          SLACK_CHANNEL: ${{ inputs.slack_channel }}
+          SLACK_COLOR: danger
+          SLACK_TITLE: ":shield: Security Issues Detected in PR"
+          SLACK_MESSAGE: |
+            Semgrep detected security issues!
+            Repository: ${{ github.repository }}
+            Branch: ${{ github.head_ref || github.ref_name }}
+            Author: ${{ github.actor }}
+            Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          SLACK_FOOTER: "Security Alert"
+          SLACK_USERNAME: "Security Bot"
